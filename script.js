@@ -1,198 +1,216 @@
 const posts = [
   {
-    id: "frontend-performance-essentials",
-    title: "前端性能优化的 7 个关键点",
-    date: "2026-09-18",
-    tags: ["前端", "性能", "实践"],
-    summary: "从网络、渲染和资源管理三个角度，梳理提升页面体验的实际策略。",
+    id: "slow-thinking",
+    title: "慢节奏下的清晰思考：如何更好地做设计和写作",
+    date: "2026-09-22",
+    tags: ["设计", "方法论", "写作"],
+    summary: "在信息噪音越来越大的时代，如何让思考更清晰、表达更准确，是我一直在反复练习的事。",
     content: `
-# 前端性能优化的 7 个关键点
+# 慢节奏下的清晰思考：如何更好地做设计和写作
 
-> 好的性能不是在追求速度本身，而是在用户感知中减少等待和不确定性。
+> 我越来越意识到，真正可靠的判断往往来自于慢一点、观察多一点、表达稳一点。
 
-## 1. 先识别真正的瓶颈
+## 1. 先理解问题，再急着给答案
 
-在做任何优化之前，最重要的是先找到主要的性能拖慢因素。常见检查方式包括：
+很多时候，问题并不是“缺一个答案”，而是“看起来像问题，其实是边界没有讲清”。
 
-- 使用 Lighthouse 评估 Core Web Vitals
-- 观察资源加载顺序
-- 检查网络请求是否有重复或冗余
+设计和写作都一样：先把问题和目标说清楚，比赶着落一个方案更重要。这样做的好处，是后续的讨论与迭代都更顺。
 
-```bash
-npm run build
-npx lighthouse https://example.com --preset=desktop
+## 2. 清晰来自于删减，而不是堆叠
+
+当你说得越多，越容易让信息失去重量。好的文章和好的界面，都倾向于减少多余的噪音，让真正重要的东西更显眼。
+
+```js
+const goal = '让复杂信息更容易被理解';
+const result = goal.replace(/复杂/g, '清晰');
+console.log(result);
 ```
 
-## 2. 优化图片和媒体资源
+## 3. 让反馈循环更短
 
-通过响应式图片、懒加载和 WebP/AVIF 这类格式，能够显著减少首屏成本。
+设计不是在桌面上“想一万次”，而是不断地让作品和用户之间形成对话。
 
-```html
-<img src="hero.webp" alt="Hero" loading="lazy" />
-```
+- 先做草稿
+- 观察接受度
+- 再迭代细节
 
-## 3. 减少阻塞渲染的脚本
+这样比一次性做大而全的方案，更容易找到真实问题。
 
-把非关键脚本延迟，优先保留用户需要立即看到的内容。在很多场景中，首屏渲染比“更强的交互能力”更关键。
+## 4. 把写作当成思考工具
 
-## 4. 合理缓存资源
+写作最有价值的地方，不是在于输出，而是在于把模糊的想法变成可校验的表达。你一旦开始写，就会看到问题的边界、逻辑漏洞和不一致之处。
 
-使用 HTTP cache、服务端缓存和静态资源版本号，降低重复请求的成本。静态站点尤其适合做长缓存策略。
+## 5. 让细节真正服务于体验
 
-## 5. 避免过多的重绘与重排
-
-在 DOM 结构复杂时，频繁写入样式会造成大量布局计算。可以通过批量更新、减少DOM节点和使用 transform 做动画来优化。
-
-## 6. 关注体验而不是单纯指标
-
-性能不能只看数值，还要看：
-
-- 首屏出现时间
-- 交互响应速度
-- 页面切换是否流畅
-
-## 7. 持续监控，而非一次性优化
-
-性能是一个持续迭代的过程。最好把 Lighthouse 和真实用户性能数据接入到评审流程中，让问题持续被发现。
+页面中的留白、字距、层级、动画都不是“装饰”，而是帮助用户理解事物和行动的节奏。
 
 ---
 
-## 结论
+## 结语
 
-真正成熟的前端优化，是在用户感知层面提升体验，同时避免低价值的工程投入。先解决慢的路径，再优化细节，通常更有效。
+我想做的，不是最“炫”的作品，而是那些能让人愿意停留、愿意继续理解、愿意回头看的东西。
 `
   },
   {
-    id: "markdown-blog-system",
-    title: "从 Markdown 到博客页面的渲染方案",
-    date: "2026-08-29",
-    tags: ["Markdown", "前端", "工程化"],
-    summary: "介绍一个从内容到页面的简单方案，适合静态博客和作品集项目。",
+    id: "markdown-practice",
+    title: "从 Markdown 到博客：一个适合静态站点的内容方案",
+    date: "2026-08-17",
+    tags: ["前端", "Markdown", "工程化"],
+    summary: "用简单且稳妥的方式，把 Markdown 文档转换成可读、可维护、可扩展的博客内容页。",
     content: `
-# 从 Markdown 到博客页面的渲染方案
+# 从 Markdown 到博客：一个适合静态站点的内容方案
 
-静态博客的核心问题往往不是“写作”，而是“如何让内容稳定、可维护、便于扩展”。
+一个适合个人博客或文档站的内容方案，核心价值在于“低维护 + 高可扩展”。
 
-## 方案概览
+## 方案总览
 
-一个常见的实现方式是：
+通常我会把文章拆成几层：
 
-1. 把文章内容保存在 Markdown 文件或统一数据源
-2. 在前端使用 `marked` 这类库解析
-3. 把标题提取成目录
-4. 对代码块做语法高亮
+1. 元数据：标题、日期、标签、摘要
+2. 正文：Markdown 格式内容
+3. 结构：目录生成与锚点链接
+4. 表现：代码高亮、排版和响应式布局
 
-```js
-const markdown = '# Hello';
-const html = marked.parse(markdown);
+```bash
+npm install marked prismjs
 ```
 
-## 目录生成
+## 为什么选 Markdown
 
-文章目录最重要的价值，是帮助读者快速找到内容结构。推荐在渲染后扫描所有 `h1`、`h2`、`h3`，并生成导航项。
+Markdown 非常适合内容创作，因为它把文案编辑和结构表现分离开来，而且适合 GitHub Pages 这类静态站点的托管环境。
 
-## 代码高亮
+## 目录生成的思路
 
-代码高亮能显著改善技术文档的可读性，Prism 或 Highlight.js 都是不错的选择。下面是一个简单的示例：
-
-```css
-pre code {
-  display: block;
-  padding: 1rem;
-  border-radius: 12px;
-}
-```
-
-## 实践建议
-
-- 把内容和样式分离
-- 保留标题层级清晰
-- 对比不同文章的 tag 结构
-- 让文章页支持移动端阅读
-
-这类方案特别适合 GitHub Pages 这类静态托管平台，因为部署成本很低，也容易演进。
-`
-  },
-  {
-    id: "ui-design-principles",
-    title: "做一个让人愿意停留的界面",
-    date: "2026-07-10",
-    tags: ["设计", "产品", "体验"],
-    summary: "从信息层级、视觉节奏和交互反馈三个方向，谈可持续的界面设计原则。",
-    content: `
-# 做一个让人愿意停留的界面
-
-很多人误以为“漂亮”是界面设计的核心，但真正影响使用体验的，是信息是否容易被理解，以及操作是否顺畅。
-
-## 1. 优先清晰的层级
-
-最有效的页面结构，通常来自于明确的阅读顺序：
-
-- 标题
-- 关键动作
-- 解释信息
-- 辅助操作
-
-## 2. 不要让表单“抢走注意力”
-
-用户真正想做的是目标行为，而不是理解每一项的设计逻辑。让交互变得显眼、明确和低认知负担，是提升转换率的重要方法。
-
-## 3. 反馈要及时
-
-点击、提交、切换状态都应该有明确反馈。如果用户看不出系统在响应，信任感会迅速下降。
+在滚动文章时，读取页面中的 `h1/h2/h3`，自动生成目录树。这样既有利于阅读，也方便后续加长文章时继续维护导航。
 
 ```js
-button.addEventListener('click', () => {
-  button.textContent = '提交中...';
-  button.disabled = true;
+const headings = document.querySelectorAll('h1, h2, h3');
+headings.forEach((heading, index) => {
+  heading.id = heading.id || `section-${index + 1}`;
 });
 ```
 
-## 4. 一致性胜于“花哨”
+## 代码高亮
 
-重用设计语言，比反复设计新模式更靠谱。用户适应产品的速度，来自系统的一致性，而不是视觉炫技。
+技术文章最怕的，是难以阅读的代码块。Prism 这类工具能让代码结构更清晰，阅读体验会明显提升。
 
 ## 结论
 
-好的界面从来不是“堆砌效果”，而是让用户理解、判断和行动更轻松。
+如果你想搭建一个不依赖复杂后端的个人博客，这个方案已经足够稳妥：内容可维护，部署简单，跨平台兼容性高。
 `
   },
   {
-    id: "personal-growth",
-    title: "提升工程效率的一些真实经验",
-    date: "2026-06-15",
-    tags: ["成长", "方法论", "团队"],
-    summary: "总结我在工程协作中逐步建立的几个效率原则，均来自真实项目反馈。",
+    id: "product-and-ui",
+    title: "优秀产品，往往不是“功能很多”，而是“更容易被理解”",
+    date: "2026-07-11",
+    tags: ["产品", "设计", "体验"],
+    summary: "从界面的层级、交互反馈和认知负担三个方面，谈如何做出更自然、更好的产品体验。",
     content: `
-# 提升工程效率的一些真实经验
+# 优秀产品，往往不是“功能很多”，而是“更容易被理解”
 
-工程效率不是靠“加班”获得的，而是靠清晰边界、标准和反馈闭环。
+一个产品真正有价值，不一定是它有多少功能，而是用户是否知道该做什么、下一步该怎么做。
 
-## 1. 先定义输出，再开始设计
+## 1. 让重要的信息先出现
 
-在需求进入开发前，最重要的是把“产出什么”讲清楚。否则越写越乱，越改越难。
+用户在打开页面时，并不会仔细阅读每一块内容。最重要的内容需要在最容易看到的位置出现，并有明确的视觉层级。
 
-## 2. 把重复动作标准化
+## 2. 反馈不能“静默”
 
-组件库、脚手架、模版和代码规范，都是减少重复劳动的重要工具。
+点击按钮后出现短暂的加载状态，表单提交完成后给出结果反馈，这些细节决定了用户是否信任你的界面。
 
-## 3. 从反馈里修正流程
+```css
+button {
+  transition: transform 0.15s ease;
+}
 
-往往最值得优化的，不是代码本身，而是沟通与协作节奏。小的迭代反馈，可以显著减少返工。
-
-```bash
-git checkout -b feature/refactor-ui
-npm run lint
-npm run test
+button:hover {
+  transform: translateY(-1px);
+}
 ```
 
-## 4. 让“可见性”提升协作效率
+## 3. 减少认知负担
 
-状态同步、设计文档、任务跟踪和变更记录，都会让团队对整体进度更有掌控感。
+很多复杂流程并不是因为功能太多，而是因为步骤太难理解。把流程拆成更小的动作，更容易让用户完成任务。
 
-## 结论
+## 4. 一致性是最强的可用性工具
 
-真正的效率，是在减少不必要的沟通成本、重复劳动和错误修正。工程能力的提升，最终体现在团队的节奏和输出质量上。
+使用统一的颜色、字重、组件和反馈方式，可以让用户在很短时间内建立信任感。
+
+---
+
+## 结语
+
+好产品和好界面，都是在“让用户最少思考”中达成的。真正难的，不是多做什么，而是知道什么该省略。
+`
+  },
+  {
+    id: "engineering-habit",
+    title: "工程效率的本质：减少重复劳动和误判",
+    date: "2026-06-08",
+    tags: ["成长", "团队", "方法论"],
+    summary: "长期来看，工程效率提升的关键，不是加班，而是把流程、沟通和反馈设计成更顺畅的状态。",
+    content: `
+# 工程效率的本质：减少重复劳动和误判
+
+很多人把效率理解为“做得更快”，但真正有效的效率，往往是从减少重复和误判开始的。
+
+## 1. 先明确交付目标
+
+在做任何功能前，如果需求、边界和验收条件没有说清楚，后续的沟通成本会越来越高。
+
+## 2. 标准化是放大效率的关键
+
+代码模板、组件库、协作流程、任务模板，都会降低重复劳动。标准化解决的是“每次重新发明轮子”的问题。
+
+```bash
+git checkout -b feature/blog-layout
+npm run lint
+npm run build
+```
+
+## 3. 反馈越早越好
+
+迭代节奏越短，误判越容易被及时纠正。界面、开发和产品之间如果能快速沟通，就更容易避免返工。
+
+## 4. 把复杂问题拆成小步
+
+复杂需求分拆以后，评估范围会更清晰，风险也更容易被识别。
+
+---
+
+## 结语
+
+我越来越认可一个观点：好的工程效率，不是靠“更猛地输出”，而是靠更好的判断和更少的无效劳动。
+`
+  },
+  {
+    id: "city-cafe-notes",
+    title: "城市里的咖啡店与写作日常",
+    date: "2026-05-03",
+    tags: ["生活", "观察", "随笔"],
+    summary: "关于写作、安静的空间和人们在城市里寻找自己的节奏。",
+    content: `
+# 城市里的咖啡店与写作日常
+
+在城市里，很多人都在寻找一个安静的地方。对我来说，写作最重要的，不是有多少灵感，而是是否有一个让我能停下来思考的场景。
+
+## 1. 空间影响表达
+
+咖啡馆里发出的声音、窗外的光线、桌上的杯子温度，都会影响我写作时的状态。好的空间并不一定特别美，而是足够让我停下来。
+
+## 2. 写作是观察的延伸
+
+我喜欢观察人如何在城市里生活，观察一个人慌忙、匆忙、想快点完成事情的样子，也观察那些愿意慢下来思考的人。
+
+## 3. 节奏比效率更重要
+
+很多创作都不是在“很忙”的状态下完成的，而是在你终于不再追赶时间时，事��自己浮出来。
+
+---
+
+## 结语
+
+生活不是为了追赶，而是为了保留那些你愿意认真感受的片刻。
 `
   }
 ];
@@ -206,9 +224,7 @@ const formatDate = (value) => {
   }).format(date);
 };
 
-const getAllTags = () => {
-  return [...new Set(posts.flatMap((post) => post.tags))];
-};
+const getAllTags = () => [...new Set(posts.flatMap((post) => post.tags))];
 
 const renderTagFilters = (selectedTag = "全部") => {
   const tagContainer = document.getElementById("tag-filters");
@@ -217,8 +233,8 @@ const renderTagFilters = (selectedTag = "全部") => {
   const allTags = ["全部", ...getAllTags()];
   tagContainer.innerHTML = allTags
     .map((tag) => {
-      const activeClass = tag === selectedTag ? "active" : "";
-      return `<button class="tag ${activeClass}" type="button" data-tag="${tag}">${tag}</button>`;
+      const active = tag === selectedTag ? "active" : "";
+      return `<button class="tag ${active}" type="button" data-tag="${tag}">${tag}</button>`;
     })
     .join("");
 
@@ -252,9 +268,7 @@ const renderBlogPosts = (selectedTag = "全部") => {
             <h3><a href="post.html?id=${post.id}">${post.title}</a></h3>
             <p>${post.summary}</p>
             <div class="tag-list">
-              ${post.tags
-                .map((tag) => `<span class="tag">${tag}</span>`)
-                .join("")}
+              ${post.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
             </div>
           </div>
         </article>
@@ -264,11 +278,14 @@ const renderBlogPosts = (selectedTag = "全部") => {
 };
 
 const renderLatestPosts = () => {
-  const container = document.getElementById("latest-posts");
-  if (!container) return;
+  const latestContainer = document.getElementById("latest-posts");
+  if (!latestContainer) return;
 
-  const latest = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
-  container.innerHTML = latest
+  const latest = [...posts]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
+
+  latestContainer.innerHTML = latest
     .map(
       (post) => `
         <article class="post-card">
@@ -281,9 +298,7 @@ const renderLatestPosts = () => {
             <h3><a href="post.html?id=${post.id}">${post.title}</a></h3>
             <p>${post.summary}</p>
             <div class="tag-list">
-              ${post.tags
-                .map((tag) => `<span class="tag">${tag}</span>`)
-                .join("")}
+              ${post.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
             </div>
           </div>
         </article>
@@ -301,7 +316,6 @@ const renderArticle = () => {
   const postId = params.get("id");
   const post = posts.find((item) => item.id === postId) || posts[0];
 
-  const html = marked.parse(post.content);
   articleRoot.innerHTML = `
     <div class="article-top">
       <p class="eyebrow">Article</p>
@@ -314,7 +328,7 @@ const renderArticle = () => {
         ${post.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
       </div>
     </div>
-    <div class="article-body">${html}</div>
+    ${marked.parse(post.content)}
   `;
 
   const headings = articleRoot.querySelectorAll("h1, h2, h3");
@@ -328,30 +342,43 @@ const renderArticle = () => {
   tocRoot.innerHTML = tocItems.join("");
 
   if (window.Prism) {
-    document.querySelectorAll("pre code").forEach((element) => {
-      Prism.highlightElement(element);
-    });
+    document.querySelectorAll("pre code").forEach((element) => Prism.highlightElement(element));
   }
 };
 
-const initProjectsPage = () => {
+const renderProjects = () => {
   const projectGrid = document.querySelector(".project-grid");
   if (!projectGrid) return;
 
   const projects = [
     {
-      title: "设计系统文档站",
-      description: "为团队构建统一的组件指南与设计语义，提升迭代效率和前端一致性。",
+      title: "组件文档站",
+      description: "为产品与前端团队建立统一的设计语言和组件手册，提升协作效率和代码一致性。",
       link: "#"
     },
     {
-      title: "Markdown 博客模板",
-      description: "支持文章列表、标签筛选、代码高亮和目录导航的静态博客方案。",
+      title: "内容型博客平台",
+      description: "支持文章沉淀、标签筛选、目录导航与代码高亮的静态站点，适合长期写作和知识复用。",
       link: "#"
     },
     {
-      title: "企业数据看板",
-      description: "将复杂运营指标进行聚合展示，提升决策速度和可视化表达。",
+      title: "运营数据看板",
+      description: "将业务数据转换为易读的决策视图，帮助团队在复杂信息中更快发现关键变化。",
+      link: "#"
+    },
+    {
+      title: "设计系统实践",
+      description: "从原子设计到组件治理，帮助团队更快速建立可持续维护的前端体系。",
+      link: "#"
+    },
+    {
+      title: "个人品牌站",
+      description: "结合写作、项目和作品展示，帮助创作者形成清晰且稳定的在线表达。",
+      link: "#"
+    },
+    {
+      title: "内容增长实验",
+      description: "围绕用户行为、内容结构和信息设计展开持续优化，提升阅读体验和传播效率。",
       link: "#"
     }
   ];
@@ -378,5 +405,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderBlogPosts();
   renderTagFilters();
   renderArticle();
-  initProjectsPage();
+  renderProjects();
 });
