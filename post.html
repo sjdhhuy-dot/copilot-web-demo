@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文章详情 | Echo Studio</title>
+    <meta name="description" content="文章详情页，支持 Markdown 渲染、目录、标签和代码高亮。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">E</span>
+          <span>Echo Studio</span>
+        </a>
+        <nav class="main-nav" aria-label="主导航">
+          <a href="index.html">首页</a>
+          <a href="blog.html">博客</a>
+          <a href="projects.html">项目</a>
+          <a href="about.html">关于</a>
+          <a href="index.html#contact">联系</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div class="container article-layout">
+        <article class="article-shell">
+          <div id="article-content"></div>
+        </article>
+        <aside class="article-toc">
+          <div class="toc-box">
+            <h3>目录</h3>
+            <nav id="article-toc"></nav>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Echo Studio</p>
+        <div class="footer-links">
+          <a href="blog.html">博客</a>
+          <a href="about.html">关于</a>
+          <a href="projects.html">项目</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
